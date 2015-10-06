@@ -65,6 +65,8 @@ static const char *nftnl_hooknum2str(int family, int hooknum)
 			return "output";
 		case NF_INET_POST_ROUTING:
 			return "postrouting";
+		case NF_INET_LOCAL_SOCKET_IN:
+			return "socketinput";
 		}
 		break;
 	case NFPROTO_ARP:
