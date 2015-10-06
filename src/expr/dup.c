@@ -115,17 +115,15 @@ static int nftnl_expr_dup_json_parse(struct nftnl_expr *e, json_t *root,
 				     struct nftnl_parse_err *err)
 {
 #ifdef JSON_PARSING
-	struct nftnl_expr_dup *dup = nftnl_expr_data(e);
 	uint32_t sreg_addr, sreg_dev;
-	int datareg_type;
+	int ret;
 
-	ret = nftnl_jansson_parse_val(root, "sreg_addr", NFT_TYPE_U32, &sreg_addr, err);
+	ret = nftnl_jansson_parse_val(root, "sreg_addr", NFTNL_TYPE_U32, &sreg_addr, err);
 	if (ret >= 0)
 		nftnl_expr_set_u32(e, NFTNL_EXPR_DUP_SREG_DEV, sreg_addr);
-	ret = nftnl_jansson_parse_val(root, "sreg_dev", NFT_TYPE_U32, &sreg_dev, err);
+	ret = nftnl_jansson_parse_val(root, "sreg_dev", NFTNL_TYPE_U32, &sreg_dev, err);
 	if (ret >= 0)
 		nftnl_expr_set_u32(e, NFTNL_EXPR_DUP_SREG_DEV, sreg_dev);
-
 
 	return 0;
 #else
